@@ -6,10 +6,15 @@
 มี Swagger สำหรับทดสอบ API ได้ทันที
 
 🏗 Project Structure
+
 apps/
+
  ├── api-gateway      → รับ HTTP Request
+
  ├── auth-service     → Register / Login / JWT
+
  └── users-service    → จัดการข้อมูลผู้ใช้
+ 
 🧱 Technology Stack
 
 NestJS (Monorepo Pattern)
