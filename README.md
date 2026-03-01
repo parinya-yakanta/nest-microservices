@@ -1,3 +1,27 @@
+🚀 Subport Microservices
+
+ระบบตัวอย่าง NestJS Monorepo + Microservices Architecture
+สื่อสารกันผ่าน RabbitMQ และใช้ PostgreSQL เป็นฐานข้อมูล
+
+มี Swagger สำหรับทดสอบ API ได้ทันที
+
+🏗 Project Structure
+apps/
+ ├── api-gateway      → รับ HTTP Request
+ ├── auth-service     → Register / Login / JWT
+ └── users-service    → จัดการข้อมูลผู้ใช้
+🧱 Technology Stack
+
+NestJS (Monorepo Pattern)
+
+RabbitMQ (Message Broker)
+
+PostgreSQL
+
+JWT Authentication (RS256)
+
+Swagger Documentation
+
 🚀 Project Setup
 1️⃣ Install Dependencies
 npm install
