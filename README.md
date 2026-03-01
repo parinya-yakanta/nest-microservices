@@ -149,3 +149,64 @@ Bearer <your_token>
 - แยกบริการเป็น Microservices
 - สื่อสารกันผ่าน RabbitMQ
 - ทดสอบ API ได้แบบ One-Click ผ่าน Swagger
+
+---
+
+# 🚀 Deployment Strategy
+
+ระบบนี้สามารถ deploy ได้หลายรูปแบบ ขึ้นอยู่กับระดับของระบบ (Scale)
+
+| Scale            | วิธี Deploy                          | เหมาะกับ |
+|------------------|--------------------------------------|----------|
+| Dev              | `nest start`                        | พัฒนาในเครื่อง |
+| VPS เครื่องเดียว | Docker Compose                      | ระบบขนาดเล็ก / Staging |
+| Production       | Docker + Reverse Proxy (Nginx/Kong) | ระบบใช้งานจริง |
+| Enterprise       | Kubernetes + API Gateway            | ระบบขนาดใหญ่ / High Availability |
+
+---
+
+## 🔹 Dev
+
+รันแยก service ด้วยคำสั่ง:
+
+```bash
+nest start api-gateway
+nest start auth-service
+nest start users-service
+```
+
+เหมาะสำหรับการพัฒนาและทดสอบในเครื่อง
+
+---
+
+## 🔹 VPS เครื่องเดียว
+
+ใช้ **Docker Compose** รวมทุก service:
+
+```bash
+docker compose up -d --build
+```
+
+เหมาะสำหรับระบบขนาดเล็กหรือ Staging
+
+---
+
+## 🔹 Production
+
+- แยก Docker container ต่อ service
+- ใช้ Reverse Proxy เช่น Nginx หรือ Kong
+- เปิด HTTPS (Let's Encrypt)
+- แยก Database และ RabbitMQ ออกจาก container หลัก
+
+เหมาะสำหรับระบบที่มีผู้ใช้งานจริง
+
+---
+
+## 🔹 Enterprise
+
+- ใช้ Kubernetes (K8s)
+- ใช้ External API Gateway (เช่น Kong / APISIX)
+- ใช้ Managed Database และ Managed RabbitMQ
+- รองรับ Auto Scaling และ High Availability
+
+เหมาะสำหรับระบบขนาดใหญ่ หรือระบบองค์กร
